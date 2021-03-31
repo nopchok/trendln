@@ -753,13 +753,13 @@ def calc_support_resistance(h, extmethod = METHOD_NUMDIFF, method=METHOD_NSQURED
 
 def plot_sup_res_date(hist, idx, numbest = 2, fromwindows = True, pctbound=0.1,
                       extmethod = METHOD_NUMDIFF, method=METHOD_NSQUREDLOGN, window=125,
-                      errpct = 0.005, hough_scale=0.01, hough_prob_iter=10, sortError=False, accuracy=1):
+                      errpct = 0.005, hough_scale=0.01, hough_prob_iter=10, sortError=False, accuracy=1, title="Chart"):
     import matplotlib.ticker as ticker
     return plot_support_resistance(hist, ticker.FuncFormatter(datefmt(idx)), numbest, fromwindows,
-                                   pctbound, extmethod, method, window, errpct, hough_scale, hough_prob_iter, sortError, accuracy)
+                                   pctbound, extmethod, method, window, errpct, hough_scale, hough_prob_iter, sortError, accuracy, title)
 def plot_support_resistance(hist, xformatter = None, numbest = 2, fromwindows = True,
                             pctbound=0.1, extmethod = METHOD_NUMDIFF, method=METHOD_NSQUREDLOGN,
-                            window=125, errpct = 0.005, hough_scale=0.01, hough_prob_iter=10, sortError=False, accuracy=1):
+                            window=125, errpct = 0.005, hough_scale=0.01, hough_prob_iter=10, sortError=False, accuracy=1, title="Chart"):
     import matplotlib.pyplot as plt
     import matplotlib.ticker as ticker
     ret = calc_support_resistance(hist, extmethod, method, window, errpct, hough_scale, hough_prob_iter, sortError, accuracy)
@@ -818,7 +818,7 @@ def plot_support_resistance(hist, xformatter = None, numbest = 2, fromwindows = 
     else:
         for h, trend, lbl, clr in disptrend:
             add_trend(h, trend, lbl, clr, True)
-    plt.title('Prices with Support/Resistance Trend Lines')
+    plt.title(title)
     plt.xlabel('Date')
     plt.ylabel('Price')
     plt.legend()
